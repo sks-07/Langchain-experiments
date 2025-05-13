@@ -9,6 +9,7 @@ langchain-openai = "*"
 langchain-community = "*"
 langchainhub = "*"
 langchain-huggingface = "*"
+langchain-ollama = "*"
 
 [dev-packages]
 

@@ -4,19 +4,23 @@ from langchain.agents import (
     AgentExecutor
 )
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain_ollama import ChatOllama
+
 from langchain_core.tools import Tool
-from tool import grt_profile_url_tavily
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain import hub
 from langchain_google_genai import ChatGoogleGenerativeAI
+
+def grt_profile_url_tavily(name:str):
+    search = TavilySearchResults()
+    res = search.run(f"{name}")
+    return res
 
 def lookup(name:str)->str:
     # llm =  ChatOllama(model="llama3")
     llm = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash",
     temperature=0,
-    google_api_key = "",
+    google_api_key = os.environ['GOOGLE_API_KEY'],
 )
     
     template = """given the full name {name_of_person} I want you to get it me a link to their Linkedin profile page.
@@ -46,7 +50,7 @@ def lookup(name:str)->str:
     return linkedin_profile
 
 if __name__=="__main__":
-    # linkedin_url = lookup(name="Subham Kumar Singh")
-    x= os.environ["GOOGLE_API_KEY"]
-    # print(linkedin_url)
-    print(x)
+    linkedin_url = lookup(name="Subham Kumar Singh")
+    # x= os.environ["GOOGLE_API_KEY"]
+    print(linkedin_url)
+    # print(x)

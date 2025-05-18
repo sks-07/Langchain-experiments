@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-langchain = "*"
 langchain-openai = "*"
 langchain-community = "*"
 langchainhub = "*"
 langchain-huggingface = "*"
 langchain-ollama = "*"
+langchain = {extras = ["google-genai"], version = "*"}
+langchain-google-genai = "*"
 
 [dev-packages]
 

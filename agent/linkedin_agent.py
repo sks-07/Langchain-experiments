@@ -9,6 +9,8 @@ from langchain_core.tools import Tool
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain import hub
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+load_dotenv()
 
 def grt_profile_url_tavily(name:str):
     search = TavilySearchResults()
@@ -20,7 +22,7 @@ def lookup(name:str)->str:
     llm = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash",
     temperature=0,
-    google_api_key = os.environ['GOOGLE_API_KEY'],
+    # google_api_key = os.environ['GOOGLE_API_KEY'],
 )
     
     template = """given the full name {name_of_person} I want you to get it me a link to their Linkedin profile page.

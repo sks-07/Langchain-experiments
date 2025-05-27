@@ -6,12 +6,9 @@ def scrape_linkedin_profile(linkedin_URL: str, Trial:bool)-> dict:
     if Trial:
         with open('subham.json','r') as f:
             response = json.load(f)
-            data = response['person']
+            # data = response['person']
             # return data
-            data = {
-                k:v for k,v in data.items()
-                if v not in ([],"","",None) and k not in ["certifications"]
-            }
+
             
     else:        
         api_endpoint = "https://api.scrapin.io/enrichment/profile"
@@ -25,8 +22,8 @@ def scrape_linkedin_profile(linkedin_URL: str, Trial:bool)-> dict:
             timeout=10
         )
         
-        data = response.json().get('person')
-        data = {
+    data = response.json().get("person")
+    data = {
                 k:v for k,v in data.items()
                 if v not in ([],"","",None) and k not in ["certifications"]
             }

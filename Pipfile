@@ -11,6 +11,8 @@ langchain-huggingface = "*"
 langchain-ollama = "*"
 langchain = {extras = ["google-genai"], version = "*"}
 langchain-google-genai = "*"
+python-dotenv = "*"
+flask = "*"
 
 [dev-packages]
 
